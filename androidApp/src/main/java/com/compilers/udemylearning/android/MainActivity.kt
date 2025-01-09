@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                  // AboutScreen()
-                    ArticleScreen(articleViewModel = articleViewModel)
+                    AppScaffold(articleViewModel)
                 }
             }
         }

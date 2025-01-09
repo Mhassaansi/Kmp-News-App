@@ -10,8 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -31,12 +35,13 @@ import com.compilers.udemylearning.articles.ArticleViewModel
 
 @Composable
 fun ArticleScreen(
+    onAboutButton: ()->Unit,
     articleViewModel: ArticleViewModel
 ) {
     val articleState = articleViewModel.articleState.collectAsState()
 
     Column {
-        AppBar()
+        AppBar(onAboutButton)
         if(articleState.value.loading){
             Loader()
         }
@@ -53,8 +58,16 @@ fun ArticleScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBar(){
-    TopAppBar(title = { Text("Articles") })
+fun AppBar(onAboutButton: ()->Unit){
+    TopAppBar(title = { Text("Articles") },
+        actions = {
+            IconButton(onClick = onAboutButton) {
+                Icon(
+                    imageVector = Icons.Outlined.Info,
+                    contentDescription = "Open about screen"
+                )
+            }
+        })
 }
 
 @Composable

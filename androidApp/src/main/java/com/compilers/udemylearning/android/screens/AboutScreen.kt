@@ -9,9 +9,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -24,17 +28,23 @@ import com.compilers.udemylearning.Platform
 
 
 @Composable
-fun AboutScreen() {
+fun AboutScreen(onUpButtonClick: ()->Unit) {
     Column {
-        Toolbar()
+        Toolbar(onUpButtonClick)
         ContentView()
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Toolbar() {
-    TopAppBar(title = { Text(text = "About Phone") })
+private fun Toolbar(onUpButtonClick:()->Unit) {
+    TopAppBar(title = { Text(text = "About Phone") },
+        navigationIcon = {
+            IconButton(onClick = onUpButtonClick) {
+                Icon(imageVector = Icons.Outlined.ArrowBack,
+                    contentDescription = "Open about screen")
+            }
+        })
 }
 
 @Composable
