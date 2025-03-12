@@ -20,6 +20,8 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/versions/9/previous-compilation-data.bin"
+            excludes += "META-INF/DEPENDENCIES"
         }
     }
     buildTypes {
@@ -34,6 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+
+
 }
 
 dependencies {
@@ -45,5 +50,7 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+    implementation (libs.koin.androidx.compose)
+    implementation(libs.koin.android)
     implementation("androidx.navigation:navigation-compose:2.7.7")
 }

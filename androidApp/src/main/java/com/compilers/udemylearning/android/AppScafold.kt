@@ -10,22 +10,21 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.compilers.udemylearning.android.screens.AboutScreen
-import com.compilers.udemylearning.android.screens.ArticleScreen
-import com.compilers.udemylearning.android.screens.Screens
+import com.compilers.udemylearning.android.screens.ArticlesScreen
 import com.compilers.udemylearning.android.screens.Screens.*
-import com.compilers.udemylearning.articles.ArticleViewModel
+
 
 
 @Composable
-fun AppScaffold(articleViewModel: ArticleViewModel) {
+fun AppScaffold() {
     val navController = rememberNavController()
+
     Scaffold {
         AppNavHost(
             navController = navController,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it),
-            articleViewModel
+                .padding(it)
         )
     }
 }
@@ -34,24 +33,23 @@ fun AppScaffold(articleViewModel: ArticleViewModel) {
 fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    articleViewModel: ArticleViewModel
+
 ) {
-
-
     NavHost(
         navController = navController,
         startDestination = ARTICLES.route,
-        modifier = modifier
+        modifier = modifier,
     ) {
         composable(ARTICLES.route) {
-            ArticleScreen(
-                onAboutButton = { navController.navigate(ABOUT_SCREEN.route) },
-                articleViewModel
+            ArticlesScreen(
+                onAboutButtonClick = { navController.navigate(ABOUT_SCREEN.route) },
             )
         }
-        composable(ABOUT_SCREEN.route) {
-            AboutScreen(onUpButtonClick = { navController.popBackStack() })
-        }
 
+        composable(ABOUT_SCREEN.route) {
+            AboutScreen(
+                onUpButtonClick = { navController.popBackStack() }
+            )
+        }
     }
 }
