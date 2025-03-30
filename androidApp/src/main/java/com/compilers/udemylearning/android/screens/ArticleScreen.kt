@@ -30,8 +30,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.compilers.udemylearning.articles.Article
-import com.compilers.udemylearning.articles.ArticlesViewModel
+import com.compilers.udemylearning.application.Article
+import com.compilers.udemylearning.presentation.ArticlesViewModel
 import org.koin.androidx.compose.getViewModel
 
 

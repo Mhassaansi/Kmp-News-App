@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     kotlin("plugin.serialization") version "1.9.0"
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -36,15 +37,18 @@ kotlin {
             implementation (libs.koin.androidx.compose)
             implementation(libs.koin.android)
             implementation (libs.koin.core)
+            implementation(libs.sql.coroutines.extensions)
 
         }
         androidMain.dependencies {
             implementation(libs.androidx.lifecycle.viewmodel.ktx)
             implementation(libs.ktor.client.android)
+            implementation(libs.sql.android.driver)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sql.native.driver)
         }
 
 
@@ -65,6 +69,16 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
+
+sqldelight {
+    databases {
+        create("UdemyLearningDatabase") { // The name of the database
+            packageName.set("com.udemylearning") // Package name used for the database class.
+        }
+    }
+}
+
+
 dependencies {
     implementation(libs.kotlinx.coroutines.core)
 
